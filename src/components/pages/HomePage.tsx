@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react'
 
 import { v4 } from 'uuid'
-import { useTranslation } from 'react-i18next'
 
-import { CharacterCard } from '../molecules'
 import {
 	BreakingBadInterface,
 	RickMortyResultsInterface,
 } from '../../interfaces'
-import { getHarryPotterChars, getRickMortyChars } from '../../helpers'
 import { Btn } from '../atoms'
+import { CharacterCard } from '../molecules'
+import { getHarryPotterChars, getRickMortyChars } from '../../helpers'
 
 const HomePage = () => {
-	const { t } = useTranslation('card')
-
 	const [currentList, setCurrentList] = useState<number>(0)
 
 	const [rickMortyData, setRickMortyData] = useState<
@@ -44,10 +41,9 @@ const HomePage = () => {
 			</nav>
 			<section className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 pb-3'>
 				{currentList === 0 &&
-					rickMortyData.map((character) => {
-						console.log(character)
-						return <CharacterCard key={v4()} {...character} />
-					})}
+					rickMortyData.map((character) => (
+						<CharacterCard key={v4()} {...character} />
+					))}
 				{currentList === 1 &&
 					breakingBadData.map((character) => (
 						<CharacterCard key={v4()} {...character} />
